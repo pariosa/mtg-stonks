@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>📉</title>
+<style>
+    body{
+        background-color:#0c4a88;
+    }
+    .description{
+       padding-left:20px;
+       position:absolute;
+        display:inline-block;
+        top:200px;
+        font-size:40px;
+        color:white;
+    }
+    .card{
+        display:inline-block;
+    }
+    .up{
+        font-size:16px;
+        color:greenyellow;
+        display:inline;
+    }
+    .down{
+        font-size:16px;
+        color:red;
+        display:inline;
+    }
+    .marquee { 
+      width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee span {
+      display: inline-block;
+      font-size: 20px;
+      position: relative;
+      left: 100%;
+      animation: marquee 12s linear infinite;
+    }
+    .marquee2 span {
+      display: inline-block;
+      font-size: 20px;
+      position: relative;
+      left: 100%;
+      animation: marquee 6s linear infinite;
+    }
+    .marquee:hover span {
+      animation-play-state: paused;
+    }
+
+    .marquee span:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .marquee span:nth-child(2) {
+      animation-delay: 1s;
+    }
+    .marquee span:nth-child(3) {
+      animation-delay: 2s;
+    }
+    .marquee span:nth-child(4) {
+      animation-delay: 3s;
+    }
+    .marquee span:nth-child(5) {
+      animation-delay: 4s;
+    }
+    .marquee span:nth-child(6) {
+      animation-delay: 5s;
+    }
+    .marquee span:nth-child(7) {
+      animation-delay: 6s;
+    }
+    .marquee span:nth-child(8) {
+      animation-delay: 7s;
+    }
+    .marquee span:nth-child(9) {
+      animation-delay: 8s;
+    }
+    .marquee span:nth-child(10) {
+      animation-delay: 9s;
+    }
+    .marquee span:nth-child(11) {
+      animation-delay: 11s;
+    }
+    .marquee span:nth-child(12) {
+      animation-delay: 12s;
+    }
+    .marquee span:nth-child(13) {
+      animation-delay: 13s;
+    }
+    .marquee span:nth-child(14) {
+      animation-delay: 14s;
+    }
+    .marquee span:nth-child(15) {
+      animation-delay: 15s;
+    }
+        .marquee span:nth-child(16) {
+      animation-delay: 16s;
+    }
+    .marquee span:nth-child(17) {
+      animation-delay: 17s;
+    }
+    .marquee span:nth-child(18) {
+      animation-delay: 18s;
+    }
+    .marquee span:nth-child(19) {
+      animation-delay: 19s;
+    }
+    .marquee span:nth-child(20) {
+      animation-delay: 20s;
+    }
+    .marquee span:nth-child(21) {
+      animation-delay: 21s;
+    }
+    @keyframes marquee {
+      0%   { left: 100%; }
+      100% { left: -100%; }
+    }
+    @keyframes marquee2 {
+      0%   { left: 100%; }
+      100% { left: -100%; }
+    }
+</style>
+    <link rel="icon" href="favicon.ico" sizes="16x16" type="image/png">
+</head>
+
+<body>
+    <div id="ticker" class="marquee"  ></div>
+    <br/>
+   <div id="ticker-land" class="marquee marquee2" ></div>
+   
+    <div id="header">
+        <img src="logo.png" style="position:absolute;top:0" width="290px"/>
+    </div>
+    <div  id="card" style="margin-top:100px" class="card">
+        <img id="cardImage" src="" style="border-radius:25px" />
+        <img src="" />
+    
+    </div>
+    <div class="description" >
+         <div id="cardReadout">
+            <div id="cardTitle">
+             
+            </div>
+            <div> from set: <span id='set'></span>
+             </div>
+            <div>
+             EXPERT SAYS
+             </div>
+             <img src="" height="400px" id="guy"/>
+             <div id="buySell">
+
+             </div>
+         </div>
+    </div>
+</body>
+    
+<script>
+    let stonks = "up";
+    if(Math.random()< 0.5){
+        stonks = "down";
+    }
+    if(stonks == "up"){
+        document.title = "📈STONKS"
+    }else{
+        document.title = "📉STONKS"
+    }
+ 
+    var xhttp = new XMLHttpRequest();
+    let card = {};
+    xhttp.onreadystatechange = function(card) {
+        if (this.readyState == 4 && this.status == 200) {
+            let response = JSON.parse(this.responseText); 
+            callBack(response)
+        }
+    };
+    xhttp.open("GET","https://api.scryfall.com/cards/random",true)
+
+     xhttp.send(); 
+    const callBack = (response) => { 
+        card.image = response.image_uris.normal
+        card.name = response.name
+        card.set = response.set_name
+        console.log(response);
+        document.getElementById('cardImage').src = card.image
+        
+        document.getElementById('cardTitle').innerHTML = card.name + "!";
+        if(stonks == "up"){
+            document.getElementById('buySell').innerHTML = "📈 BUY";
+            document.getElementById('guy').src = 'expertbuy.png'
+
+
+        }else{
+            document.getElementById('buySell').innerHTML = "📉 SELL";
+            document.getElementById('guy').src = 'expertsell.png'
+
+        }
+        document.getElementById('set').innerHTML = card.set
+
+    }
+
+    console.log(stonks)
+    let stonkPrices = [
+        {
+            name:'Timmy Walk',
+            direction:'up'
+        },
+        {
+            name:'Mox Sappire',
+            direction:'up'
+        },        
+        {
+            name:'Ancestral refund',
+            direction:'up'
+        },        
+        {
+            name:'Blank Loutis',
+            direction:'up'
+        },        
+        {
+            name:'Mishra\'s Photoshop',
+            direction:'up'
+        },        
+        {
+            name:'Mox Louis',
+            direction:'up'
+        },        
+        {
+            name:'Candellabra of Tinos',
+            direction:'up'
+        },        
+        {
+            name:'Litenegn Bolt',
+            direction:'up'
+        },        
+        {
+            name:'Necripotens',
+            direction:'up'
+        },        
+        {
+            name:'Swornds to Plownshares',
+            direction:'up'
+        },        
+        {
+            name:'Fource of Won\'t',
+            direction:'up'
+        },
+        {
+            name:'lasagna'
+        }
+    ]
+    let landPrices = [
+        {
+            name:"Minsty Rainfourest"
+        },
+        {
+            name:"Airid Mensa"
+        },        
+        {
+            name:"Bloodstange Mire"
+        },        
+        {
+            name:"Flooded Strange"
+        },        
+        {
+            name:"March Flants"
+        },        
+        {
+            name:"Scolding Tard"
+        },        
+        {
+            name:"Pollented Delto"
+        },        
+        {
+            name:"Vermint Catarombs"
+        },        
+        {
+            name:"Wingstep Heath"
+        },        
+        {
+            name:"Scalding Karn"
+        },        
+        {
+            name:"Woodin Footfils"
+        },        
+        {
+            name:"Volcandic Island"
+        },        
+        {
+            name:"Tumdra"
+        },        
+        {
+            name:"Planteau"
+        },
+        {
+            name:"Taigna"
+        },        
+        {
+            name:"Bablands"
+        },        
+        {
+            name:"Sabbanah"
+        }, 
+        {
+            name:"Scrunland"
+        },
+        {
+            name:"Byeyou"
+        }
+    ]
+    function shuffle(array) {
+      array.sort(() => Math.random() - 0.5);
+    }
+    shuffle(stonkPrices);
+    shuffle(landPrices);
+    let tickerString = ""
+    stonkPrices.forEach(card =>{
+        let direction = Math.random();
+        if(direction < 0.5){       
+            tickerString += '<span class="up">' + card.name + " ▲   </span> ";
+        }else{
+            tickerString += '<span class="down">' + card.name + " ▼     </span>";
+        }
+    })    
+    let tickerString2 = ""
+    landPrices.forEach(card =>{
+        let direction = Math.random();
+        if(direction < 0.5){       
+            tickerString2 += '<span class="up">' + card.name + " ▲  </span> ";
+        }else{
+            tickerString2 += '<span class="down">' + card.name + " ▼  </span>";
+        }
+    })
+    document.getElementById('ticker').innerHTML = tickerString;
+    document.getElementById('ticker-land').innerHTML = tickerString2;
+
+</script>
+</html>
